@@ -2,7 +2,7 @@ import numpy as np
 
 from run import run
 from constants import ABAKO_PATH, CONFIG_FILE, INP_DIR
-from gen_input import gen_cond, gen_config, gen_energymesh
+from gen_input import gen_cond, gen_config, gen_dim, gen_energymesh
 
 
 def wizard_run() -> None:
@@ -51,6 +51,16 @@ def wizard_cond() -> None:
 
     print()
     print("Conditions file generated.")
+
+
+def wizard_dim() -> None:
+    print("Generating characteristic plasma length file.\n")
+
+    dim = input(f"\tplasma characteristic length (um): ")
+    gen_dim(INP_DIR, int(dim))
+
+    print()
+    print("Characteristic length file generated.")
 
 
 def wizard_energymesh() -> None:

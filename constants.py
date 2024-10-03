@@ -16,6 +16,7 @@ MAX_CORES = 20
 TEV_FNAME = "tab_tev.txt"
 DNE_FNAME = "tab_dne.txt"
 PHO_FNAME = "photonenergymesh.txt"
+CON_FNAME = "condiciones.txt"
 
 # Default global pathes
 INP_DIR = join(ABAKO_PATH, "input_files")
