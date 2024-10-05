@@ -84,7 +84,8 @@ def main():
     print("[1] Run ABAKO.")
     print("[2] Create new config file.")
     print("[3] Modify temperature and density conditions.")
-    print("[4] Modify energy grid.")
+    print("[4] Modify characteristic plasma length")
+    print("[5] Modify energy grid.")
     print()
 
     option = input("Select an option: ")
@@ -102,6 +103,8 @@ def main():
         case 3:
             wizard_cond()
         case 4:
+            wizard_dim()
+        case 5:
             wizard_energymesh()
         case other:
             print("Option not recognised. Exiting")
