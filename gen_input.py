@@ -1,34 +1,56 @@
 from os.path import join
-from constants import DEFAULT_ELEM, DEFAULT_COND, DEFAULT_SYM, DNE_FNAME, TEV_FNAME, PHO_FNAME, CON_FNAME
+from constants import (
+    DEFAULT_ELEM,
+    DEFAULT_COND,
+    DEFAULT_SYM,
+    DNE_FNAME,
+    TEV_FNAME,
+    PHO_FNAME,
+    CON_FNAME,
+)
 
 
 def gen_cond(
-        path: str,
-        data_tev: list,
-        data_dne: list,
-        ) -> None:
+    path: str,
+    data_tev: list,
+    data_dne: list,
+) -> None:
     """Generate plasma conditions input files"""
-    ndata_tev, ndata_dne = len(data_tev), len(data_dne)
+    gen_tev(path, data_tev)
+    gen_dne(path, data_dne)
+
+
+def gen_tev(path: str, data_tev: list) -> None:
+    """Generate plasma temperature input file"""
+    ndata_tev = len(data_tev)
+    with open(join(path, TEV_FNAME), "w") as f_tev:
+        f_tev.write(f"  {ndata_tev}\n")
+        for tev in data_tev:
+            f_tev.write(f"   {tev:.5e}\n")
+
+
+def gen_dne(path: str, data_dne: list) -> None:
+    """Generate plasma density input file"""
+    ndata_dne = len(data_dne)
     with open(join(path, DNE_FNAME), "w") as f_dne:
         f_dne.write(f"  {ndata_dne}\n")
         for dne in data_dne:
             f_dne.write(f"   {dne:.5e}\n")
 
-    with open(join(path, TEV_FNAME), "w") as f_tev:
-        f_tev.write(f"  {ndata_tev}\n")
-        for tev in data_tev:
-            f_tev.write(f"   {tev:.2f}\n")
-
 
 def gen_config(
     path: str,
     elem: str = DEFAULT_ELEM,
-    cond: str = DEFAULT_COND,
+    aprox: str = DEFAULT_COND,
     sym: str = DEFAULT_SYM,
 ) -> None:
     """Generate configuration file"""
+    valid_aprox = ["N", "L", "C", "S"]
+    if not aprox in valid_aprox:
+        raise Exception(f"{aprox} is not a valid key ({", ".join(valid_aprox)}).")
+
     with open(path, "w") as f:
-        f.write(f"N {cond} Y {sym} E\n\n")
+        f.write(f"N {aprox} Y {sym} E\n\n")
         f.write(f"{elem:<2} {6:>2} {0:>2}\n\n")
         f.write("IP")
 
