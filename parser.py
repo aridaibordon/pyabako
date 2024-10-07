@@ -4,8 +4,8 @@ from gen_input import gen_tev, gen_dne, gen_config, gen_dim, gen_energymesh
 
 
 PARSER_ARGS = [
-    ("-d", 3, float, ("MIN", "MAX", "N"), "set plasma electronic density", gen_tev),
-    ("-t", 3, float, ("MIN", "MAX", "N"), "set temperature density (in eV)", gen_dne),
+    ("-d", 3, float, ("MIN", "MAX", "N"), "set plasma electronic density", gen_dne),
+    ("-t", 3, float, ("MIN", "MAX", "N"), "set temperature density (in eV)", gen_tev),
     ("-e", 3, float, ("MIN", "MAX", "N"), "set energy grid (in eV)", gen_energymesh),
     ("-l", 1, int, "LENGTH", "set characteristic plasma length (in um)", gen_dim),
     ("-c", 3, str, ("ELEM", "APROX", "SYM"), "change .config file", gen_config),

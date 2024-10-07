@@ -7,7 +7,7 @@ from constants import INP_DIR, CONFIG_FILE
 from parser import PARSER_ARGS, get_pyabako_parser
 
 
-def manage_parse_key_args(key: str, kargs: list[float | str], flag_cmd_dict: dict[function]) -> None:
+def manage_parse_key_args(key: str, kargs: list[float | str], flag_cmd_dict: dict) -> None:
     flag_cmd = flag_cmd_dict[key]
     if key in ["d", "t", "e"]:
         min, max, n = kargs
@@ -16,13 +16,13 @@ def manage_parse_key_args(key: str, kargs: list[float | str], flag_cmd_dict: dic
             data_range = 10 ** np.linspace(np.log10(min), np.log10(max), int(n))
         else:
             data_range = np.linspace(min, max, int(n))
-
+        
         flag_cmd(INP_DIR, data_range)
 
-    if key in ["l"]:
+    if key == "l":
         flag_cmd(INP_DIR, *kargs)
 
-    if key in ["c"]:
+    if key == "c":
         elem, aprox, sym = kargs
         flag_cmd(CONFIG_FILE, elem, aprox, sym)
 

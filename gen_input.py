@@ -47,7 +47,7 @@ def gen_config(
     """Generate configuration file"""
     valid_aprox = ["N", "L", "C", "S"]
     if not aprox in valid_aprox:
-        raise Exception(f"{aprox} is not a valid key ({", ".join(valid_aprox)}).")
+        raise Exception(f"{aprox} is not a valid key ({', '.join(valid_aprox)}).")
 
     with open(path, "w") as f:
         f.write(f"N {aprox} Y {sym} E\n\n")
@@ -58,7 +58,7 @@ def gen_config(
 def gen_dim(path: str, dim: int):
     """Generate characteristic plasma length file"""
     with open(join(path, CON_FNAME), "w") as f_con:
-        f_con.write(1)
+        f_con.write("1\n")
         f_con.write(f"0d0 0d0 {dim}d0")
 
 
