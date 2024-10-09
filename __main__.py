@@ -25,6 +25,9 @@ def manage_parse_key_args(key: str, kargs: list[float | str], flag_cmd_dict: dic
     if key == "c":
         elem, aprox, sym = kargs
         flag_cmd(CONFIG_FILE, elem, aprox, sym)
+    
+    if key == "r":
+        flag_cmd(*kargs)
 
 
 def main() -> None:

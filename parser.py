@@ -1,7 +1,7 @@
 import argparse
 
 from gen_input import gen_tev, gen_dne, gen_config, gen_dim, gen_energymesh
-
+from run import run
 
 PARSER_ARGS = [
     ("-d", 3, float, ("MIN", "MAX", "N"), "set plasma electronic density", gen_dne),
@@ -9,6 +9,7 @@ PARSER_ARGS = [
     ("-e", 3, float, ("MIN", "MAX", "N"), "set energy grid (in eV)", gen_energymesh),
     ("-l", 1, int, "LENGTH", "set characteristic plasma length (in um)", gen_dim),
     ("-c", 3, str, ("ELEM", "APROX", "SYM"), "change .config file", gen_config),
+    ("-r", 1, int, "N_GRID", "run ABAKO executable", run),
 ]
 
 
